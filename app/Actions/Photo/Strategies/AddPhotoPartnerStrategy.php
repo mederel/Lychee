@@ -2,10 +2,7 @@
 
 namespace App\Actions\Photo\Strategies;
 
-use App\Exceptions\Internal\QueryBuilderException;
-use App\Exceptions\MediaFileOperationException;
-use App\Exceptions\MediaFileUnsupportedException;
-use App\Exceptions\ModelDBException;
+use App\Contracts\LycheeException;
 use App\Image\NativeLocalFile;
 use App\Models\Photo;
 
@@ -33,10 +30,7 @@ class AddPhotoPartnerStrategy extends AddStandaloneStrategy
 	/**
 	 * @return Photo
 	 *
-	 * @throws ModelDBException
-	 * @throws MediaFileOperationException
-	 * @throws QueryBuilderException
-	 * @throws MediaFileUnsupportedException
+	 * @throws LycheeException
 	 */
 	public function do(): Photo
 	{
