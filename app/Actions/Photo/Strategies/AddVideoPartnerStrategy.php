@@ -45,4 +45,24 @@ class AddVideoPartnerStrategy extends AddBaseStrategy
 
 		return $this->photo;
 	}
+
+	protected function putSourceIntoFinalDestination(MediaFile $videoSourceFile, string $videoPath)
+	{
+		// TODO: Fill out
+		// Attention: The previous (common parent) method was broken in various
+		// ways, because it did not consider certain "edge" cases.
+		//
+		// If the source file is freshly uploaded (i.e. a native local file)
+		// then the old method was mostly good.
+		// But if the source file already exists in the final storage (i.e.
+		// it is a Flysystem file), then we must properly _rename_ it.
+		// Case 1: The file is located remotely. We don't want to stream
+		// the existing file back to Lychee and then send it off again.
+		// This is inefficient.
+		// We want to rename it, in the remote location.
+		// Case 2: The file is located on local storage and a symlink.
+		// In this case we want to rename the symlink, but import the video
+		// with its new name and remove the old symlink.
+		// This would imply to accidentally resolve the symlink.
+	}
 }
